@@ -55,10 +55,10 @@ p{margin:0}
 .brand .g{font-weight:700}
 .b1{color:#1a73e8}.b2{color:#ea4335}.b3{color:#fbbc04}.b4{color:#1a73e8}.b5{color:#34a853}.b6{color:#ea4335}.b7{color:#34a853}
 .card{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:28px; display:flex; flex-direction:column; gap:18px; min-width:0}
-.lens{background:var(--blue-bg); color:var(--fg); border-radius:12px; padding:12px 16px; font-size:14px; min-width:0}
+.lens{background:var(--blue-bg); color:var(--fg); border-radius:12px; padding:12px 16px; font-size:15px; min-width:0}
 .lens strong{color:var(--blue); font-weight:500}
 .steps{display:flex; gap:8px; flex-wrap:wrap; list-style:none; margin:0; padding:0}
-.steps li{font-size:13px; color:var(--muted); padding:6px 12px; border-radius:16px; border:1px solid var(--line)}
+.steps li{font-size:14px; color:var(--muted); padding:6px 12px; border-radius:16px; border:1px solid var(--line)}
 .steps li.on{color:var(--on-blue); background:var(--blue); border-color:var(--blue)}
 .steps li.done{color:var(--blue); border-color:var(--blue)}
 .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
@@ -68,14 +68,14 @@ p{margin:0}
 }
 .btn.primary{background:var(--blue); color:var(--on-blue); border-color:var(--blue)}
 .btn:disabled{opacity:.5; cursor:default}
-.btn:focus-visible, input:focus-visible, textarea:focus-visible{outline:2px solid var(--blue); outline-offset:2px}
-textarea, input[type="date"], input[type="text"]{
+.btn:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{outline:2px solid var(--blue); outline-offset:2px}
+textarea, input[type="date"], input[type="text"], select{
   font:inherit; color:var(--fg); background:var(--surface); border:1px solid var(--line);
   border-radius:8px; padding:10px 12px; width:100%; min-width:0;
 }
-textarea{min-height:88px; resize:vertical; font-family:ui-monospace, Menlo, Consolas, monospace; font-size:13px}
+textarea{min-height:88px; resize:vertical; font-family:ui-monospace, Menlo, Consolas, monospace; font-size:14px}
 input[type="range"]{accent-color:var(--blue); width:100%}
-.item{border-top:1px solid var(--line); padding-top:14px; display:flex; flex-direction:column; gap:10px; min-width:0}
+.item{border-top:1px solid var(--line); padding-top:14px; display:flex; flex-direction:column; gap:12px; min-width:0}
 .item:first-child{border-top:none; padding-top:0}
 .scale{display:grid; grid-template-columns:1fr; gap:4px}
 .scale label{font-size:15px; color:var(--muted); display:flex; justify-content:space-between; gap:8px}
@@ -85,16 +85,16 @@ input[type="range"]{accent-color:var(--blue); width:100%}
 .chip.ok{background:var(--green-bg); color:var(--green)}
 .chip.gap{background:var(--yellow-bg); color:var(--yellow)}
 .chip.mis{background:var(--red-bg); color:var(--red)}
-.pair{display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:14px}
-.pair div{background:var(--bg); border-radius:8px; padding:8px 10px; min-width:0}
-.pair span{display:block; font-size:12px; color:var(--muted)}
-.pair b{font-weight:500; font-variant-numeric:tabular-nums}
+.compare{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:6px 10px; font-size:15px; align-items:baseline}
+.compare .hd{font-size:13px; color:var(--muted)}
+.compare .val{font-variant-numeric:tabular-nums; font-weight:500}
+.compare .lbl{color:var(--fg)}
 .big{font-size:40px; font-weight:500; color:var(--blue); font-variant-numeric:tabular-nums}
-.script{background:var(--bg); border-left:3px solid var(--blue); border-radius:6px; padding:10px 12px; font-size:14px}
-.hidden-note{display:none}
+.script{background:var(--bg); border-left:3px solid var(--blue); border-radius:6px; padding:10px 12px; font-size:15px}
 [hidden]{display:none!important}
 @media (max-width:480px){
-  .pair{grid-template-columns:1fr}
+  .compare{grid-template-columns:1fr 1fr}
+  .compare .lbl{grid-column:1 / -1}
   h1{font-size:27px}
   .card{padding:18px}
 }
@@ -118,10 +118,10 @@ input[type="range"]{accent-color:var(--blue); width:100%}
 
   <!-- HOME -->
   <section data-view="home" class="card">
-    <h1>Agree on expectations before they cause problems</h1>
-    <p>Many working relationships depend on expectations nobody has said out loud, such as how fast to reply or how often to get feedback. This tool helps two people bring those expectations into the open and agree on a few of them.</p>
+    <h1>Agree on what each of you owes the other</h1>
+    <p>Many working relationships rest on promises nobody has stated out loud, such as how fast to reply or how often to get feedback. This tool helps two people see those promises the same way and agree on a few of them.</p>
     <p class="muted small">Your answers stay in this browser. You share only a code with your partner, and only when you choose to.</p>
-    <div class="lens"><strong>How it works.</strong> Each of you answers alone. You rate what you expect, then guess what your partner expects. Results appear only after you have both shared your codes.</div>
+    <div class="lens"><strong>How it works.</strong> Each of you answers alone. For each item you say whether it was promised or agreed, how much each of you owes the other, and what you think your partner believes they owe you. Results appear only after you have both shared your codes.</div>
     <div class="row">
       <button class="btn primary" id="startBtn">Start my sort</button>
       <button class="btn" id="demoBtn">Try it with a demo partner</button>
@@ -130,10 +130,10 @@ input[type="range"]{accent-color:var(--blue); width:100%}
 
   <!-- 1. SORT -->
   <section data-view="sort" class="card" hidden>
-    <h2>Sort your expectations</h2>
-    <p class="muted">For each statement, set two levels from 1 (not expected) to 5 (strongly expected).</p>
-    <div class="lens"><strong>Why guess their side?</strong> Many surprises come from wrong guesses about what the other person expects.</div>
-    <div id="itemList" style="display:flex; flex-direction:column; gap:14px"></div>
+    <h2>Sort what is owed</h2>
+    <p class="muted">For each item, answer four questions. Use the scale from 1 (not owed) to 5 (clearly owed).</p>
+    <div class="lens"><strong>Owed is not the same as wanted.</strong> You may want fast replies without believing your partner promised them. Answer what you believe, not what you would like.</div>
+    <div id="itemList" style="display:flex; flex-direction:column; gap:16px"></div>
     <div class="row" style="justify-content:space-between">
       <button class="btn" id="sortBack">Back</button>
       <button class="btn primary" id="sortSubmit">Lock my answers and continue</button>
@@ -170,17 +170,15 @@ input[type="range"]{accent-color:var(--blue); width:100%}
 
   <!-- 3. REVEAL -->
   <section data-view="reveal" class="card" hidden>
-    <h2>What lined up, what didn't</h2>
+    <h2>Where you agree and where you don't</h2>
     <div id="revealLocked" class="lens" hidden>The reveal unlocks when you have your partner's code. Go back to the share step to paste it.</div>
     <div id="revealBody" style="display:flex; flex-direction:column; gap:16px">
-      <div class="row" style="gap:20px; align-items:flex-end">
-        <div>
-          <div class="big" id="accuracy">0/8</div>
-          <div class="small muted">items where your guess of their expectation was within one point</div>
-        </div>
+      <div>
+        <div class="big" id="accuracy">0/8</div>
+        <div class="small muted">items where your guesses matched their answers within one point</div>
       </div>
-      <div class="lens"><strong>Treat gaps as questions.</strong> A gap means you read an expectation differently. It does not mean someone is wrong. A misread means your guess about the other person missed.</div>
-      <div id="revealList" style="display:flex; flex-direction:column; gap:14px"></div>
+      <div class="lens"><strong>Treat differences as questions.</strong> A difference means you read a promise or an obligation differently. It does not mean someone is wrong.</div>
+      <div id="revealList" style="display:flex; flex-direction:column; gap:16px"></div>
     </div>
     <div class="row" style="justify-content:space-between">
       <button class="btn" id="revealBack">Back</button>
@@ -202,7 +200,7 @@ input[type="range"]{accent-color:var(--blue); width:100%}
   <!-- 5. COMMIT -->
   <section data-view="commit" class="card" hidden>
     <h2>Write down what you agreed</h2>
-    <p class="muted">One agreement per gap, with a date to check back in. Specific beats perfect.</p>
+    <p class="muted">One agreement per difference, with a date to check back in. Specific beats perfect.</p>
     <div id="commitList" style="display:flex; flex-direction:column; gap:14px"></div>
     <div class="row" style="justify-content:space-between">
       <button class="btn" id="commitBack">Back</button>
@@ -234,47 +232,72 @@ const ITEMS = [
   {id:"decide", text:"Make routine calls without checking in first",                    short:"routine decisions"}
 ];
 
-// A demo partner, so one person can test the whole flow. Each entry holds their own expectation and their guess about yours.
+// Each entry: promise (yes / partly / no), owedTo (what they believe you owe them),
+// owedBy (what they believe they owe you), guess (what they think you believe you owe them).
 const DEMO = {
-  reply:{own:5,guess:4}, hours:{own:2,guess:3}, fback:{own:4,guess:4}, scope:{own:5,guess:2},
-  grow:{own:3,guess:3}, credit:{own:4,guess:5}, badnews:{own:5,guess:5}, decide:{own:2,guess:4}
+  reply:{promise:"yes",    owedTo:4, owedBy:4, guess:3},
+  hours:{promise:"no",     owedTo:2, owedBy:2, guess:3},
+  fback:{promise:"partly", owedTo:4, owedBy:3, guess:4},
+  scope:{promise:"yes",    owedTo:5, owedBy:2, guess:2},
+  grow: {promise:"no",     owedTo:2, owedBy:3, guess:3},
+  credit:{promise:"partly",owedTo:4, owedBy:5, guess:5},
+  badnews:{promise:"yes",  owedTo:5, owedBy:5, guess:5},
+  decide:{promise:"no",    owedTo:2, owedBy:4, guess:4}
+};
+
+// Sample answers for the person testing the demo.
+const DEMO_MINE = {
+  reply:{promise:"yes",    owedTo:4, owedBy:4, guess:4},
+  hours:{promise:"yes",    owedTo:4, owedBy:1, guess:2},
+  fback:{promise:"yes",    owedTo:4, owedBy:4, guess:4},
+  scope:{promise:"no",     owedTo:3, owedBy:3, guess:4},
+  grow: {promise:"partly", owedTo:2, owedBy:2, guess:2},
+  credit:{promise:"yes",   owedTo:3, owedBy:2, guess:3},
+  badnews:{promise:"yes",  owedTo:5, owedBy:5, guess:5},
+  decide:{promise:"partly",owedTo:3, owedBy:2, guess:3}
 };
 
 // ---- State ---------------------------------------------------------------
-const KEY = "unspoken-expectations-v1";
-let state = load() || {mine:{}, submitted:false, partner:null, commits:[]};
-let view = "home";
+const KEY = "unspoken-expectations-v2";
+let state = load() || {mine:{}, submitted:false, partner:null, partnerCode:"", commits:[]};
 
 function load(){ try{ return JSON.parse(localStorage.getItem(KEY)); }catch(e){ return null; } }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
 
-function mineOf(id){ return state.mine[id] || (state.mine[id] = {own:3, guess:3}); }
+function mineOf(id){
+  return state.mine[id] || (state.mine[id] = {promise:"partly", owedTo:3, owedBy:3, guess:3});
+}
 
 // ---- Codes ---------------------------------------------------------------
-// A code holds only the numbers for each statement. It has no names.
+// A code holds only the answers for each item. It has no names.
 function encodeAnswers(map){
-  const payload = {v:1, items: ITEMS.map(i => [map[i.id].own, map[i.id].guess])};
-  return "UEX1." + btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+  const payload = {v:2, items: ITEMS.map(i => {
+    const m = map[i.id];
+    return [m.promise, m.owedTo, m.owedBy, m.guess];
+  })};
+  return "UEX2." + btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
 }
 function decodeAnswers(code){
   const s = code.trim();
-  if(!s.startsWith("UEX1.")) throw new Error("This does not look like an Unspoken Expectations code.");
+  if(!s.startsWith("UEX2.")) throw new Error("This does not look like an Unspoken Expectations code.");
   const payload = JSON.parse(decodeURIComponent(escape(atob(s.slice(5)))));
-  if(payload.v !== 1 || !Array.isArray(payload.items) || payload.items.length !== ITEMS.length){
+  if(payload.v !== 2 || !Array.isArray(payload.items) || payload.items.length !== ITEMS.length){
     throw new Error("This code is from a different version or is incomplete.");
   }
   const out = {};
   ITEMS.forEach((item, idx) => {
-    const [own, guess] = payload.items[idx];
-    if(![own, guess].every(n => Number.isInteger(n) && n >= 1 && n <= 5)) throw new Error("A value in this code is out of range.");
-    out[item.id] = {own, guess};
+    const [promise, owedTo, owedBy, guess] = payload.items[idx];
+    if(!["yes","partly","no"].includes(promise)) throw new Error("A promise answer in this code is not valid.");
+    if(![owedTo, owedBy, guess].every(n => Number.isInteger(n) && n >= 1 && n <= 5)){
+      throw new Error("A value in this code is out of range.");
+    }
+    out[item.id] = {promise, owedTo, owedBy, guess};
   });
   return out;
 }
 
 // ---- Views ---------------------------------------------------------------
 function show(name){
-  view = name;
   document.querySelectorAll("[data-view]").forEach(el => { el.hidden = el.dataset.view !== name; });
   const order = {sort:0, share:1, reveal:2, talk:3, commit:4};
   document.querySelectorAll("#stepper li").forEach(li => {
@@ -295,28 +318,42 @@ function renderSort(){
   const list = document.getElementById("itemList");
   list.innerHTML = ITEMS.map(item => {
     const m = mineOf(item.id);
+    const opt = (v, label) => `<option value="${v}" ${m.promise === v ? "selected" : ""}>${label}</option>`;
     return `
-      <div class="item" data-id="${item.id}">
+      <div class="item">
         <h3>${esc(item.text)}</h3>
         <div class="scale">
-          <label for="own-${item.id}">You expect <output id="ov-${item.id}">${m.own}</output></label>
-          <input type="range" min="1" max="5" step="1" id="own-${item.id}" data-k="own" data-id="${item.id}" value="${m.own}">
+          <label for="pr-${item.id}">Was this promised, agreed to, or clearly implied?</label>
+          <select id="pr-${item.id}" data-k="promise" data-id="${item.id}">
+            ${opt("yes","Yes")}${opt("partly","Partly")}${opt("no","No")}
+          </select>
         </div>
-        <div class="scale">
-          <label for="guess-${item.id}">You think your partner expects <output id="gv-${item.id}">${m.guess}</output></label>
-          <input type="range" min="1" max="5" step="1" id="guess-${item.id}" data-k="guess" data-id="${item.id}" value="${m.guess}">
-        </div>
+        ${slider(item.id, "owedTo", "You believe your partner owes you this", m.owedTo)}
+        ${slider(item.id, "owedBy", "You believe you owe your partner this", m.owedBy)}
+        ${slider(item.id, "guess", "You think your partner believes they owe you this", m.guess)}
       </div>`;
   }).join("");
   list.oninput = e => {
     const el = e.target;
     if(!el.dataset.k) return;
     const m = mineOf(el.dataset.id);
-    m[el.dataset.k] = Number(el.value);
-    const out = document.getElementById((el.dataset.k === "own" ? "ov-" : "gv-") + el.dataset.id);
-    if(out) out.textContent = el.value;
+    if(el.dataset.k === "promise"){
+      m.promise = el.value;
+    } else {
+      m[el.dataset.k] = Number(el.value);
+      const out = document.getElementById(`out-${el.dataset.k}-${el.dataset.id}`);
+      if(out) out.textContent = el.value;
+    }
     save();
   };
+}
+
+function slider(id, k, label, value){
+  return `
+    <div class="scale">
+      <label for="r-${k}-${id}">${esc(label)} <output id="out-${k}-${id}">${value}</output></label>
+      <input type="range" min="1" max="5" step="1" id="r-${k}-${id}" data-k="${k}" data-id="${id}" value="${value}">
+    </div>`;
 }
 
 document.getElementById("sortSubmit").onclick = () => {
@@ -342,8 +379,7 @@ document.getElementById("copyCode").onclick = async () => {
     await navigator.clipboard.writeText(text);
     msg.textContent = "Copied.";
   }catch(e){
-    const box = document.getElementById("myCode");
-    box.select();
+    document.getElementById("myCode").select();
     msg.textContent = "Select the text and copy it manually.";
   }
 };
@@ -375,20 +411,31 @@ document.getElementById("toReveal").onclick = () => {
 };
 
 // ---- 3. Reveal -----------------------------------------------------------
+// Naming: "me" is you, "them" is your partner.
+// Your view that they owe you should match their view that they owe you (them.owedBy).
+// Your view that you owe them should match their view that you owe them (them.owedTo).
+// Your guess about their view should match their view (them.owedBy).
+// Their guess about your view should match your view (me.owedBy).
 function analyze(){
   return ITEMS.map(item => {
     const me = state.mine[item.id];
     const them = state.partner[item.id];
-    const gap = Math.abs(me.own - them.own);
-    const misMe = me.guess - them.own;      // positive: you guessed they expect more than they do
-    const misThem = them.guess - me.own;    // positive: they guessed you expect more than you do
+    const promiseGap = me.promise === them.promise ? 0 : 2;
+    const owedGap = Math.max(Math.abs(me.owedTo - them.owedBy), Math.abs(me.owedBy - them.owedTo));
+    const misMe = Math.abs(me.guess - them.owedBy);
+    const misThem = Math.abs(them.guess - me.owedBy);
     return {
-      item, ownMe:me.own, ownThem:them.own, guessMe:me.guess, guessThem:them.guess,
-      gap, misMe, misThem,
-      accurate: Math.abs(misMe) <= 1,
-      score: Math.max(gap, Math.abs(misMe), Math.abs(misThem))
+      item, me, them, promiseGap, owedGap, misMe, misThem,
+      accurate: misMe <= 1 && misThem <= 1,
+      score: Math.max(promiseGap, owedGap, misMe, misThem)
     };
   });
+}
+
+const PROMISE_LABEL = {yes:"Yes", partly:"Partly", no:"No"};
+
+function compareRow(label, you, they){
+  return `<div class="lbl">${esc(label)}</div><div class="val">${you}</div><div class="val">${they}</div>`;
 }
 
 function renderReveal(){
@@ -404,20 +451,25 @@ function renderReveal(){
 
   document.getElementById("revealList").innerHTML = rows.map(r => {
     const chips = [];
-    chips.push(r.gap >= 2
-      ? `<span class="chip gap">Different expectations</span>`
-      : `<span class="chip ok">Aligned</span>`);
-    if(Math.abs(r.misMe) >= 2) chips.push(`<span class="chip mis">You misread them</span>`);
-    if(Math.abs(r.misThem) >= 2) chips.push(`<span class="chip mis">They misread you</span>`);
+    chips.push(r.promiseGap
+      ? `<span class="chip gap">Different view of the promise</span>`
+      : `<span class="chip ok">Same view of the promise</span>`);
+    chips.push(r.owedGap >= 2
+      ? `<span class="chip gap">Different views of what is owed</span>`
+      : `<span class="chip ok">Aligned on what is owed</span>`);
+    if(r.misMe >= 2) chips.push(`<span class="chip mis">You misread them</span>`);
+    if(r.misThem >= 2) chips.push(`<span class="chip mis">They misread you</span>`);
     return `
       <div class="item">
         <h3>${esc(r.item.text)}</h3>
         <div class="chips">${chips.join("")}</div>
-        <div class="pair">
-          <div><span>You expect</span><b>${r.ownMe} of 5</b></div>
-          <div><span>They expect</span><b>${r.ownThem} of 5</b></div>
-          <div><span>You guessed they expect</span><b>${r.guessMe} of 5</b></div>
-          <div><span>They guessed you expect</span><b>${r.guessThem} of 5</b></div>
+        <div class="compare">
+          <div class="hd">Item</div><div class="hd">You</div><div class="hd">Your partner</div>
+          ${compareRow("Promised or agreed", PROMISE_LABEL[r.me.promise], PROMISE_LABEL[r.them.promise])}
+          ${compareRow("They owe you", `${r.me.owedTo} of 5`, `${r.them.owedBy} of 5`)}
+          ${compareRow("You owe them", `${r.me.owedBy} of 5`, `${r.them.owedTo} of 5`)}
+          ${compareRow("Their guess of what they owe you", `${r.me.guess} of 5`, `${r.them.owedBy} of 5`)}
+          ${compareRow("Your guess of what you owe them", `${r.them.guess} of 5`, `${r.me.owedBy} of 5`)}
         </div>
       </div>`;
   }).join("");
@@ -438,26 +490,35 @@ function topGaps(){
 // ---- 4. Talk -------------------------------------------------------------
 function opener(r){
   const s = r.item.short;
-  if(r.gap >= 2){
-    if(r.ownMe < r.ownThem){
-      return `I want to make sure I meet what you expect on ${s}. Could we agree on what good looks like?`;
-    }
-    return `I'd like to check my assumptions on ${s}. I expect more than I think you do. How do you see it?`;
+  if(r.promiseGap){
+    return `I remember ${s} differently. Do we both see it as something we agreed to?`;
   }
-  return `I may have guessed wrong about what you expect on ${s}. What matters most to you here?`;
+  if(r.owedGap >= 2){
+    if(r.me.owedTo > r.them.owedBy){
+      return `On ${s}, I see it as owed to me more clearly than you do. What did you take from our earlier talks?`;
+    }
+    if(r.me.owedTo < r.them.owedBy){
+      return `On ${s}, you seem to see it as owed to me more clearly than I do. Can we talk through what it should look like?`;
+    }
+    return `On ${s}, I'm not sure how much I owe you. What do you count on from me here?`;
+  }
+  if(r.misMe >= 2){
+    return `I may have guessed wrong about what you believe you owe me on ${s}. How do you see it?`;
+  }
+  return `I don't think you have the full picture of what I owe you on ${s}. Can we compare what we each believe?`;
 }
 
 function renderTalk(){
   const gaps = topGaps();
   const list = document.getElementById("talkList");
   if(!gaps.length){
-    list.innerHTML = `<div class="lens">You agree on all eight statements, with no large misreads. A check-in date will keep it that way. Go to the next step to set one.</div>`;
+    list.innerHTML = `<div class="lens">You agree on all eight items, with no large differences. A check-in date will keep it that way. Go to the next step to set one.</div>`;
     return;
   }
   list.innerHTML = gaps.map(r => `
     <div class="item">
       <h3>${esc(r.item.text)}</h3>
-      <p class="small muted">You: ${r.ownMe} of 5 · Them: ${r.ownThem} of 5</p>
+      <p class="small muted">You: they owe you ${r.me.owedTo} of 5 · They: they owe you ${r.them.owedBy} of 5</p>
       <p class="small">Suggested opener</p>
       <div class="script">${esc(opener(r))}</div>
     </div>`).join("");
@@ -473,18 +534,17 @@ function defaultDate(){
 function renderCommit(){
   const gaps = topGaps();
   const list = document.getElementById("commitList");
-  const summary = document.getElementById("summary");
-  summary.hidden = true;
+  document.getElementById("summary").hidden = true;
   if(!gaps.length){
-    list.innerHTML = `<div class="lens">No big gaps to resolve. Set one check-in date to confirm you still see things the same way.</div>
+    list.innerHTML = `<div class="lens">No large differences to resolve. Set one check-in date to confirm you still see things the same way.</div>
       <div class="scale"><label for="cd-none">Check-in date</label><input type="date" id="cd-none" value="${defaultDate()}"></div>`;
     return;
   }
   list.innerHTML = gaps.map(r => `
-    <div class="item" data-topic="${r.item.id}">
+    <div class="item">
       <h3>${esc(r.item.text)}</h3>
       <label class="small muted" for="ag-${r.item.id}">What we agreed</label>
-      <textarea id="ag-${r.item.id}" placeholder="For example: I will reply within one working day, and I will flag anything that will take longer."></textarea>
+      <textarea id="ag-${r.item.id}" placeholder="For example: I will reply within one working day, and I will flag any delay."></textarea>
       <label class="small muted" for="cd-${r.item.id}">Check back in on</label>
       <input type="date" id="cd-${r.item.id}" value="${defaultDate()}">
     </div>`).join("");
@@ -495,7 +555,7 @@ document.getElementById("saveCommit").onclick = () => {
   const out = [];
   if(!gaps.length){
     const d = document.getElementById("cd-none").value;
-    out.push({topic:"Overall", agreement:"We see our expectations the same way.", date:d});
+    out.push({topic:"Overall", agreement:"We see what we owe each other the same way.", date:d});
   } else {
     for(const r of gaps){
       const text = document.getElementById("ag-" + r.item.id).value.trim();
@@ -528,7 +588,7 @@ document.getElementById("copySummary").onclick = async () => {
 };
 document.getElementById("commitBack").onclick = () => show("talk");
 document.getElementById("startOver").onclick = () => {
-  state = {mine:{}, submitted:false, partner:null, commits:[]};
+  state = {mine:{}, submitted:false, partner:null, partnerCode:"", commits:[]};
   save();
   show("home");
 };
@@ -536,13 +596,7 @@ document.getElementById("startOver").onclick = () => {
 // ---- Home ----------------------------------------------------------------
 document.getElementById("startBtn").onclick = () => show("sort");
 document.getElementById("demoBtn").onclick = () => {
-  // Sample answers for you, so the reveal shows both matches and gaps.
-  state.mine = {};
-  ITEMS.forEach(i => { state.mine[i.id] = {own:3, guess:3}; });
-  Object.assign(state.mine, {
-    reply:{own:4,guess:4}, hours:{own:5,guess:2}, fback:{own:4,guess:4}, scope:{own:3,guess:4},
-    credit:{own:5,guess:3}, decide:{own:4,guess:2}
-  });
+  state.mine = JSON.parse(JSON.stringify(DEMO_MINE));
   state.submitted = true;
   state.partner = DEMO;
   state.partnerCode = encodeAnswers(DEMO);
